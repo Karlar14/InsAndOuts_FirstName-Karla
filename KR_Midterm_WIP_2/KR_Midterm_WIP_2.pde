@@ -12,13 +12,18 @@ PImage Maze2;
 PImage Maze3;
 PImage Dirt;
 PImage Player;
+PImage T1;
 float player;
 float x = 50;
 float y = 50;
 float speedX = 0;
 float speedY = 0;
 float cP1 = 470;
-float cp2 = 400;
+float cp2 = 100;
+float cP2 = 400;
+color t1 = color(245,158,92); // t1 is the first target the user has to acheive
+//float wH = 50; // width and height of the cirlce
+boolean kL, kR,kU,kD;
 
 void setup(){
   background(255);
@@ -31,8 +36,10 @@ void setup(){
    Maze3 = loadImage("M3.png");
    Dirt =   loadImage("dirt.png");
    Player = loadImage("main.png");
+   T1 = loadImage("target1.png");
 }
 void draw(){
+  
   
  if(frame == "Menu"){
    background(0);
@@ -43,13 +50,15 @@ void draw(){
      image(Dirt,0,0,500,500);
      image(Maze1,0,0,500,500);
      //image(Player,x,y,200,200);
-     ellipse(cP1,370,50,50); // checkpoint 1
+     //image(T1,470,370,50,50); // this is the target
+     //fill(t1);
+     ellipse(470,370,50,50); // checkpoint 1
    }else if (frame == "Maze2"){
      background(255);
      image(Dirt,0,0,500,500);
      image(Maze2,0,0,500,500);
     //image(Player,x,y,200,200);
-     ellipse(100,cp2,50,50);
+     ellipse(cp2,cP2,50,50); 
    }else if (frame == "Maze3"){
      background(255);
      image(Dirt,0,0,500,500);
@@ -58,37 +67,84 @@ void draw(){
    }
     
     //image(Player,x,y,10,10);
-    ellipse(x,y,10,10);
-    x+=speedX ;
-    y+=speedY;
+    ellipse(x,y,50,50);
+    countSpeed();   //Change speed based on current keys pressed.
+    changePosition(); //Change position based on speed.
+    speedY *= .9; // adds
+    speedX *= .9;
+  
     
-    if(x > cP1 ){   // i want it to touch the circle and then go to second maze
+    if((x == 470) && (y == 370)){ // touch the circle and then go to second maze
+      //ellipse(x,y,10,10);
       frame = "Maze2";
     }
-    // if(y < cp2){   // i want it to touch the circle and then go to second maze
-    //  frame = "Maze2";
+    //if(x == cp2 && x == cP2 ) {   // when user touches thhe cire it should change to the third maze
+     
+    // frame = "Maze3";
     //}
-    
+
+
+
+
+
+
 }
 
-void keyPressed(){
-   if(key == 'w'){ // 'w' will go up 
-       y-=50;
-   }
-   if(key == 's'){ // 's' will go down
-       y+=50;
-   }
-   if(key == 'd'){ // this will go right
-       x+=50;
-   }
-   if(key == 'a'){ // this will go left
-      x-=50;
-   }
+void keyPressed() {
+  //if (key == CODED) {
+    if (key == 'w') {
+      kU = true;
+    }
+    if (key == 's') {
+      kD = true;
+    }
+    if (key == 'a') {
+      kL = true;
+    }
+    if (key == 'd') {
+      kR = true;
+    }
+  //}
+}
+void keyReleased() {
    
+    if (key == 'w') {  // this makes sure the  play doesn't continuously goes up
+      kU = false; 
+    }
+    if (key == 's') {
+      kD = false;
+    }
+    if (key == 'a') {
+      kL = false;
+    }
+    if (key == 'd') {
+      kR = false;
+    }
 
 }
 
 
+void countSpeed(){
+  if(kL) {      
+  speedX = speedX - 0.5  ;
+  }
+  if(kR) {
+ speedX = speedX + 0.5  ;
+  }
+  if(kU){
+  speedY = speedY - 0.5  ;
+
+  }
+  if(kD){
+  speedY =  speedY + 0.5;
+} 
+}
+
+
+void changePosition(){
+  x = x + speedX; //x is equal to 100 and it will add xSpeed equals 0 so it will add 
+  y = y + speedY;
+}
 
 void mousePressed(){
   if(frame == "Menu"){
