@@ -1,5 +1,5 @@
 // Karla Ramirez Garden Maze game
-//*\the goal here is to make a pretty glowy maze with different 
+//*\the goal here was to make a pretty glowy maze with different 
 //challenges. */
 // The user will use 'a','w','s','d' to move around the maze.
 
@@ -175,9 +175,9 @@ void end() {
 void mousePressed(){
   if(frame == "Menu"){
       frame = "Maze1";
-  }else if(frame == "Maze1"){
-      frame = "Maze2";
-  }else if(frame == "Maze2"){
-      frame = "Maze3";
-  }
+  }//else if(frame == "Maze1"){
+  //    frame = "Maze2";
+  //}else if(frame == "Maze2"){
+  //    frame = "Maze3";
+  //}
 }
