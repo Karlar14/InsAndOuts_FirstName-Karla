@@ -58,7 +58,7 @@ void draw(){
      background(255);
      image(Dirt,0,0,500,500);
      image(Maze2,0,0,500,500);
-    image(Player,x,y,200,200);
+     image(Player,x,y,200,200);
       // if((x > 370 && x < 395) && (y > 295 && y < 325)){ // touch the circle and then go to second maze
       //  //ellipse(x,y,10,10);
       //  frame = "Maze2";
@@ -76,7 +76,8 @@ void draw(){
       //if((x > 325 && x < 400 ) && (y < -2 && y > -30 )) {   // when user touches thhe cire it should change to the third maze
       //   frame = "Maze3";
       //}
-      //ellipse();
+      ellipse(250,250,50,50);
+      
 
    }else if(frame == "End"){
      background(255);
@@ -164,9 +165,9 @@ void enemy(){
 
 void end() {
    background(0);
-   text("Garden Maze",200,200);
-   text("Want to start over?", 200,250);
-   text("Yes",200,250);
+   text("Garden Maze",250,200);
+   text("Want to start over?", 250,250);
+   text("Yes",250,275);
 }
 
 
