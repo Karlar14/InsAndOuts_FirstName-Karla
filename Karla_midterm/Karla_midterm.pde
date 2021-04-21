@@ -73,16 +73,16 @@ void draw(){
 
 void keyPressed(){
    if(key == 'w'){ // 'w' will go up 
-       y-=50;
+       y-=30;
    }
    if(key == 's'){ // 's' will go down
-       y+=50;
+       y+=30;
    }
    if(key == 'd'){ // this will go right
-       x+=50;
+       x+=30;
    }
    if(key == 'a'){ // this will go left
-      x-=50;
+      x-=30;
    }
    
 

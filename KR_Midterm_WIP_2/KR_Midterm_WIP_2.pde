@@ -6,7 +6,7 @@
 
 
 
-String frame = "Menu";
+String frame = "Menu";   
 PImage Maze1;
 PImage Maze2;
 PImage Maze3;
@@ -18,10 +18,10 @@ float x = 50;
 float y = 50;
 float speedX = 0;
 float speedY = 0;
-float cP1 = 470;
-float cp2 = 100;
-float cP2 = 400;
-color t1 = color(245,158,92); // t1 is the first target the user has to acheive
+//float cP1 = 470;
+//float cp2 = 100;
+//float cP2 = 400;
+//color t1 = color(245,158,92); // t1 is the first target the user has to acheive
 //float wH = 50; // width and height of the cirlce
 boolean kL, kR,kU,kD;
 
@@ -32,15 +32,17 @@ void setup(){
   textSize(24);
   
    Maze1 = loadImage("M1.png");
-   Maze2 = loadImage("M2.png");
-   Maze3 = loadImage("M3.png");
+   Maze3 = loadImage("M2.png");
+   
+   Maze2 = loadImage("M2 copy.png");
+   
    Dirt =   loadImage("dirt.png");
    Player = loadImage("main.png");
    T1 = loadImage("target1.png");
 }
 void draw(){
   
-  
+   
  if(frame == "Menu"){
    background(0);
    text("Garden Maze",width/2,200);
@@ -49,39 +51,59 @@ void draw(){
      background(255);
      image(Dirt,0,0,500,500);
      image(Maze1,0,0,500,500);
-     //image(Player,x,y,200,200);
-     //image(T1,470,370,50,50); // this is the target
+     image(Player,x,y,150,150);
+     image(T1,420,320,100,100); // this is the target
      //fill(t1);
-     ellipse(470,370,50,50); // checkpoint 1
+     //ellipse(470,370,50,50); // checkpoint 1
    }else if (frame == "Maze2"){
+     
      background(255);
      image(Dirt,0,0,500,500);
      image(Maze2,0,0,500,500);
-    //image(Player,x,y,200,200);
-     ellipse(cp2,cP2,50,50); 
+    image(Player,x,y,200,200);
+      // if((x > 370 && x < 395) && (y > 295 && y < 325)){ // touch the circle and then go to second maze
+      //  //ellipse(x,y,10,10);
+      //  frame = "Maze2";
+      //  x = 139; // changes the coordinates of the player
+      //  y = 400;
+      
+       
+      //}
+     ellipse(450,40,50,50); 
    }else if (frame == "Maze3"){
      background(255);
      image(Dirt,0,0,500,500);
      image(Maze3,0,0,500,500);
-     //image(Player,x,y,200,200);
+     image(Player,x,y,200,200);
+      //if((x > 325 && x < 400 ) && (y < -2 && y > -30 )) {   // when user touches thhe cire it should change to the third maze
+      //   frame = "Maze3";
+      //}
+
    }
     
-    //image(Player,x,y,10,10);
-    ellipse(x,y,50,50);
+   //image(Player,x,y,150,150);
+    //ellipse(x,y,50,50);
+    println(x,y);
     countSpeed();   //Change speed based on current keys pressed.
     changePosition(); //Change position based on speed.
     speedY *= .9; // adds
     speedX *= .9;
   
     
-    if((x == 470) && (y == 370)){ // touch the circle and then go to second maze
+    if((x > 370 && x < 395) && (y > 295 && y < 325)){ // touch the circle and then go to second maze
       //ellipse(x,y,10,10);
       frame = "Maze2";
-    }
-    //if(x == cp2 && x == cP2 ) {   // when user touches thhe cire it should change to the third maze
+      x = 139; // changes the coordinates of the player
+      y = 400;
+    
      
-    // frame = "Maze3";
-    //}
+    }
+    if((x > 325 && x < 400 ) && (y < -2 && y > -30 )) {   // when user touches thhe cire it should change to the third maze
+     frame = "Maze3";
+      x = -72;
+      y = 324;
+      
+    }
 
 
 
